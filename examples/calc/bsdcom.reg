@@ -1,0 +1,8 @@
+# BSD-COM 类注册表
+#
+# 格式：CLSID  模块路径  描述（描述可省略，可含空格）
+# 路径可以是绝对路径，也可以是相对于工作目录的路径。
+#
+# 对应 Windows 注册表的 HKCR\CLSID\{...}\InprocServer32
+
+{6A1F1001-2C31-4E77-9B2A-113344556677}  ./libcalc.so  CalcComponent 示例计算组件

@@ -1,0 +1,48 @@
+/*
+ * calc.idl - BSD-COM 接口定义示例
+ *
+ * 这份文件是接口的唯一事实来源：vtable 布局、IID、CLSID、方法索引、
+ * 代理与存根全部由 bsdcom-idlc 从这里生成，不再手写。
+ *
+ * 生成：
+ *   ./idlc -o gen -v calc.idl
+ */
+
+[
+    uuid(9C4D0001-7E21-4B90-8F3A-001122334455),
+    version(1.0),
+    helpstring("BSD-COM 示例库：整数计算器")
+]
+library CalcLib
+{
+    [
+        uuid(9C4D1001-7E21-4B90-8F3A-001122334455),
+        helpstring("整数计算器接口")
+    ]
+    interface ICalc : IUnknown
+    {
+        [helpstring("加法：a + b")]
+        HRESULT Add([in] long a, [in] long b, [out, retval] long *result);
+
+        [helpstring("减法：a - b")]
+        HRESULT Sub([in] long a, [in] long b, [out, retval] long *result);
+
+        [helpstring("乘法：a * b")]
+        HRESULT Mul([in] long a, [in] long b, [out, retval] long *result);
+
+        [helpstring("整除：b 为 0 时返回 E_INVALIDARG，且不写出参")]
+        HRESULT Div([in] long a, [in] long b, [out, retval] long *result);
+
+        [helpstring("按名字查常量，演示 [string] 入参的编组")]
+        HRESULT Lookup([in, string] const char *name, [out, retval] long *result);
+    };
+
+    [
+        uuid(9C4D2001-7E21-4B90-8F3A-001122334455),
+        helpstring("计算器组件类")
+    ]
+    coclass Calculator
+    {
+        interface ICalc;
+    };
+};

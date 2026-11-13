@@ -1,0 +1,56 @@
+/*
+ * edge.idl - 编译器边界用例
+ *
+ * 专门覆盖示例里没走到的生成路径：
+ *   - void 返回、无参数方法
+ *   - float / double 编组
+ *   - [in, out] 双向参数
+ *   - 一个文件多个接口
+ *
+ * 这个文件不需要服务端实现，只用来验证生成的 C 代码合法：
+ *   ./idlc -o tests/idl/gen tests/idl/edge.idl
+ *   cc -Iinclude -Itests/idl/gen -c tests/idl/gen/edge_p.c
+ */
+
+[
+    uuid(AA000001-1111-2222-3333-444455556666),
+    version(1.0),
+    helpstring("边界用例库")
+]
+library EdgeLib
+{
+    [
+        uuid(AA000101-1111-2222-3333-444455556666),
+        helpstring("无参数、void 返回、浮点、双向参数")
+    ]
+    interface IEdge : IUnknown
+    {
+        [helpstring("无参数无返回值")]
+        void Ping();
+
+        [helpstring("只有出参")]
+        HRESULT GetVersion([out, retval] long *version);
+
+        [helpstring("双精度与单精度入参")]
+        HRESULT Scale([in] double x, [in] float factor, [out, retval] double *result);
+
+        [helpstring("字符串入参")]
+        HRESULT StrLen([in, string] const char *text, [out, retval] long *len);
+
+        [helpstring("双向参数：进去加一再返回")]
+        HRESULT Bump([in, out] long *counter);
+
+        [helpstring("小整数类型")]
+        HRESULT Narrow([in] short a, [in] unsigned char b,
+                       [out, retval] short *result);
+    };
+
+    [
+        uuid(AA000201-1111-2222-3333-444455556666),
+        helpstring("同文件第二个接口")
+    ]
+    interface IOther : IUnknown
+    {
+        HRESULT Neg([in] long a, [out, retval] long *result);
+    };
+};

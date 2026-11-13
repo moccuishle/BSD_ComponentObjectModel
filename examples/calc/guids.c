@@ -1,0 +1,14 @@
+/* GUIDS 定义：组件与客户端各编译一份，按值比较即可 */
+#include "calciface.h"
+
+/* {6A1F0001-2C31-4E77-9B2A-113344556677} */
+const BSDCOM_IID BSDCOM_IID_ICalc = {
+    0x6A1F0001u, 0x2C31u, 0x4E77u,
+    { 0x9B, 0x2A, 0x11, 0x33, 0x44, 0x55, 0x66, 0x77 }
+};
+
+/* {6A1F1001-2C31-4E77-9B2A-113344556677} */
+const BSDCOM_CLSID BSDCOM_CLSID_Calc = {
+    0x6A1F1001u, 0x2C31u, 0x4E77u,
+    { 0x9B, 0x2A, 0x11, 0x33, 0x44, 0x55, 0x66, 0x77 }
+};

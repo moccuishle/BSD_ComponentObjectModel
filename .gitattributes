@@ -1,0 +1,15 @@
+# 本项目目标平台是 4.4BSD，源码一律用 LF 存储并在工作区保持 LF。
+# 否则 Windows 上 core.autocrlf=true 会把 Makefile / shell 脚本转成 CRLF，
+# 到 BSD 上 make 与 sh 都会出错。
+* text=auto eol=lf
+
+*.c    text eol=lf
+*.h    text eol=lf
+*.idl  text eol=lf
+*.md   text eol=lf
+*.sh   text eol=lf
+*.reg  text eol=lf
+Makefile text eol=lf
+
+*.png  binary
+*.jpg  binary

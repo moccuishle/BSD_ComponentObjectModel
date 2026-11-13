@@ -1,0 +1,19 @@
+# 构建产物
+*.o
+*.a
+*.so
+*.exe
+build/
+idlc
+
+# idlc 生成的代码：由 .idl 用 `make` 重新生成，不入库
+examples/calcgen/gen/
+tests/idl/gen/
+
+# 编辑器 / 系统
+.vscode/
+.idea/
+*.swp
+*~
+.DS_Store
+Thumbs.db
